@@ -1,81 +1,352 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Govind Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govind | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<style>
-body{
-font-family:Arial;
-margin:0;
-background:#f4f4f4;
-}
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #007aff;
+            --header-bg: #1a1a1a;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
-header{
-background:#333;
-color:white;
-padding:20px;
-text-align:center;
-}
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --primary-color: #38bdf8;
+            --header-bg: #020617;
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
 
-section{
-padding:20px;
-margin:20px;
-background:white;
-border-radius:10px;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
 
-footer{
-text-align:center;
-padding:15px;
-background:#333;
-color:white;
-}
-</style>
+        /* Dark Mode Toggle Button */
+        .theme-switch-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        .theme-switch {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+        .theme-switch:active {
+            transform: scale(0.95);
+        }
 
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Typing Effect CSS */
+        .typing-text {
+            color: var(--primary-color);
+            font-weight: 600;
+            border-right: 3px solid var(--primary-color);
+            white-space: nowrap;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 30px;
+            margin: 25px 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid rgba(0,122,255,0.1);
+            padding-bottom: 8px;
+        }
+
+        /* CodeVita Badge Style */
+        .badge-container {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+        }
+        .badge-icon {
+            font-size: 2.5rem;
+            color: #ff007f;
+            margin-right: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(255, 0, 127, 0.4); }
+            100% { transform: scale(1); }
+        }
+
+        /* Skills Progress Bars */
+        .skill-box {
+            margin: 15px 0;
+        }
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .progress-bar {
+            background: rgba(0,0,0,0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        [data-theme="dark"] .progress-bar {
+            background: rgba(255,255,255,0.1);
+        }
+        .progress {
+            background: var(--primary-color);
+            height: 100%;
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Projects List Grid */
+        .project-card {
+            background: rgba(0,0,0,0.02);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        [data-theme="dark"] .project-card {
+            background: rgba(255,255,255,0.03);
+        }
+
+        /* Contact Form Styles */
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .contact-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: var(--header-bg);
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<h1>Govind</h1>
-<p>B.Tech CSD Student</p>
-</header>
+    <div class="theme-switch-wrapper">
+        <button class="theme-switch" id="themeToggle"><i class="fas fa-moon"></i> Mode</button>
+    </div>
 
-<section>
-<h2>About Me</h2>
-<p>
-Hello! I am Govind, a B.Tech 1st Year CSD student.
-I am learning programming and web development.
-</p>
-</section>
+    <header>
+        <h1>Govind</h1>
+        <p>I am a <span class="typing-text" id="typewriter"></span></p>
+    </header>
 
-<section>
-<h2>Skills</h2>
-<ul>
-<li>C Programming</li>
-<li>Python</li>
-<li>HTML</li>
-<li>CSS</li>
-<li>GitHub</li>
-</ul>
-</section>
+    <main>
+        <section id="about">
+            <h2><i class="fas fa-user"></i> About Me</h2>
+            <p>
+                Hello! I am Govind, a passionate <strong>B.Tech Computer Science and Design (CSD)</strong> student. 
+                I love exploring creative UI designs, automated scripts, and solving logical problems through coding. 
+                Currently crafting digital experiences and expanding my technical stacks!
+            </p>
+        </section>
 
-<section>
-<h2>Projects</h2>
-<ul>
-<li>Calculator using C</li>
-<li>Portfolio Website</li>
-</ul>
-</section>
+        <section id="achievements">
+            <h2><i class="fas fa-trophy"></i> Special Achievements</h2>
+            <div class="badge-container">
+                <div class="badge-icon"><i class="fas fa-code"></i></div>
+                <div>
+                    <h3 style="margin:0 0 5px 0; color:#ff007f;">TCS CodeVita Season 13</h3>
+                    <p style="margin:0; opacity:0.9;">Successfully qualified and ranked globally in one of the most prestigious competitive coding contests.</p>
+                </div>
+            </div>
+        </section>
 
-<section>
-<h2>Contact</h2>
-<p>Email: yourmail@gmail.com</p>
-</section>
+        <section id="skills">
+            <h2><i class="fas fa-laptop-code"></i> Skills</h2>
+            
+            <div class="skill-box">
+                <div class="skill-name"><span>C Programming</span><span>85%</span></div>
+                <div class="progress-bar"><div class="progress" data-percent="85%"></div></div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name"><span>Python</span><span>80%</span></div>
+                <div class="progress-bar"><div class="progress" data-percent="80%"></div></div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name"><span>HTML5 & CSS3</span><span>75%</span></div>
+                <div class="progress-bar"><div class="progress" data-percent="75%"></div></div>
+            </div>
+            <div class="skill-box">
+                <div class="skill-name"><span>GitHub / Version Control</span><span>70%</span></div>
+                <div class="progress-bar"><div class="progress" data-percent="70%"></div></div>
+            </div>
+        </section>
 
-<footer>
-© 2026 Govind
-</footer>
+        <section id="projects">
+            <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+            <div class="project-card">
+                <h3><i class="fas fa-calculator"></i> Smart Calculator using C</h3>
+                <p>A robust CLI-based application utilizing C programming logic to perform complex arithmetic operations and calculations smoothly.</p>
+            </div>
+            <div class="project-card">
+                <h3><i class="fas fa-globe"></i> Interactive Portfolio Website</h3>
+                <p>My personal digital space built using advanced HTML, CSS, and modern JavaScript features like Dark/Light mode toggle and typing scripts.</p>
+            </div>
+        </section>
 
+        <section id="contact">
+            <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+            <form class="contact-form" action="https://formspree.io/f/yourmail@gmail.com" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <textarea name="message" rows="4" placeholder="Your Message Here..." required></textarea>
+                <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Govind | Built with <i class="fas fa-heart" style="color:#ff007f;"></i> using AI
+    </footer>
+
+    <script>
+        // 1. Dark Mode Toggle Script
+        const toggleBtn = document.getElementById('themeToggle');
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Mode';
+            }
+        });
+
+        // 2. Automated Text Typing Script
+        const words = ["CSD Student.", "Competitive Programmer.", "Web Developer."];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typewriter').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typewriter').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 60);
+            };
+            loopDeleting();
+        }
+        typingEffect();
+
+        // 3. Skill Bars Animation on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.progress');
+            setTimeout(() => {
+                progressBars.forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-percent');
+                });
+            }, 300);
+        });
+    </script>
 </body>
 </html>
