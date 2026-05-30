@@ -172,27 +172,27 @@
             background: rgba(255,255,255,0.03);
         }
 
-        /* Contact Form Styles */
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 8px;
-            background: var(--bg-color);
-            color: var(--text-color);
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-        .contact-form button {
-            background: var(--primary-color);
+        /* Modern Dynamic Contact Button */
+        .whatsapp-btn {
+            background: #25D366;
             color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 15px 32px;
+            border-radius: 10px;
+            text-decoration: none;
             font-weight: 600;
-            width: 100%;
+            font-size: 1.1rem;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        .whatsapp-btn:active {
+            transform: translateY(-1px);
         }
 
         footer {
@@ -271,12 +271,17 @@
 
         <section id="contact">
             <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
-            <form class="contact-form" action="https://formspree.io/f/yourmail@gmail.com" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email Address" required>
-                <textarea name="message" rows="4" placeholder="Your Message Here..." required></textarea>
-                <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
-            </form>
+            <div style="text-align: center; padding: 10px 0;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px; opacity: 0.9;">
+                    Natho direct ga matladali anukunte kindha unna button click chey ra!
+                </p>
+                <a href="https://wa.me/919182232328?text=Hi%20Govind,%20nee%20portfolio%20chusa!%20Super%20ga%20vundi." 
+                   target="_blank" 
+                   class="whatsapp-btn">
+                    <i class="fab fa-whatsapp" style="font-size: 1.3rem; margin-right: 8px; vertical-align: middle;"></i> 
+                    Chat on WhatsApp
+                </a>
+            </div>
         </section>
     </main>
 
